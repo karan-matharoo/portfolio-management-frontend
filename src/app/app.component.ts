@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  standalone: true
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
-
-  title: string;
-
-  constructor() {
-    this.title = 'Spring Boot - Angular Application';
-  }
+  title = 'pm-ui';
 }
