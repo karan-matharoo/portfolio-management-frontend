@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../app/user';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class UserService {
 
+  private http = inject(HttpClient);
   private usersUrl: string;
+  private adduserUrl: string;
 
-  constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/demo';
+  constructor() {
+    this.usersUrl = '/demo/all';
+    this.adduserUrl = '/demo/add';
   }
 
   public findAll(): Observable<User[]> {
@@ -17,6 +20,6 @@ export class UserService {
   }
 
   public save(user: User) {
-    return this.http.post<User>(this.usersUrl, user);
+    return this.http.post<User>(this.adduserUrl, user);
   }
 }
